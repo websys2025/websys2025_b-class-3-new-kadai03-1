@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
     <head>
-        <meta charset="urf-8">
+        <meta charset="utf-8">
         <title>演習課題3-4：自動販売機</title>
     </head>
     <body>
@@ -24,12 +24,24 @@
 
                 // 配列の内容を項目毎に出力
                 // ここにコードを書く
+                items.forEach(item => {
+                    console.log(`商品番号: ${item.id}, 商品名: ${item.name}, 金額: ${item.price}, 在庫数: ${item.stock}`);
+                });
                 console.log(""); // 空行の出力
             }
 
             // 商品購入の関数
             function buyItem(no) {
                 // ここにコードを書く
+                const item = items[no - 1]; // 商品を取得
+                if (item.stock > 0) {
+                    console.log(`商品番号: ${item.id}, 商品名: ${item.name}を購入します。`);
+                    item.stock--; // 在庫を減らす
+                } else {
+                    console.log(`商品番号: ${item.id}, 商品名: ${item.name}は在庫がありません。`);
+                }
+
+
                 showItemList(); // 商品一覧の表示関数呼び出し
             }
 
