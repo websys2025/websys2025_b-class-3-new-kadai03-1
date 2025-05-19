@@ -21,15 +21,29 @@
             // 商品一覧の表示関数
             function showItemList() {
                 console.log("商品は以下の" + items.length + "種類です。");
-
-                // 配列の内容を項目毎に出力
-                // ここにコードを書く
-                console.log(""); // 空行の出力
+                for (let item of items) {
+                    console.log(`商品番号: ${item.id}, 商品名: ${item.name}, 金額: ${item.price}, 在庫数: ${item.stock}`);
+            　　}
+    　　　　　　 console.log(""); // 空行の出力
             }
+
+             
 
             // 商品購入の関数
             function buyItem(no) {
                 // ここにコードを書く
+                const item = items.find(i => i.id === no);
+                if (!item) {
+                    console.log(`${no}は無効な商品番号です。番号は1～8で指定してください。`);
+                    return;
+                }
+
+                if (item.stock > 0) {
+                    item.stock--; // 在庫を減らす
+                    console.log(`商品番号: ${item.id}, 商品名: ${item.name}を購入します。`);
+                } else {
+                    console.log("在庫がありません。");
+                }
                 showItemList(); // 商品一覧の表示関数呼び出し
             }
 
